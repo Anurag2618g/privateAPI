@@ -69,6 +69,12 @@ app.post("/posts", (req,res) => {
 //CHALLENGE 4: PATCH a post when you just want to update one parameter
 
 //CHALLENGE 5: DELETE a specific post by providing the post id.
+app.delete("/posts/:id", (req,res) => {
+  const id = parseInt(req.params.id);
+  const index = posts.findIndex((p) => p.id === id);
+  posts.splice(index,1);
+  res.json({message: "Post deleted"});
+});
 
 app.listen(port, () => {
   console.log(`API is running at http://localhost:${port}`);
